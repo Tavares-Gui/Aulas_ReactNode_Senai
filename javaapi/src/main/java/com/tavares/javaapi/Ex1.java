@@ -11,7 +11,8 @@ public class Ex1
     @Getter @Setter public float nota4;
 
 
-    public Ex1(float nota1, float nota2, float nota3, float nota4){
+    public Ex1(float nota1, float nota2, float nota3, float nota4)
+    {
         this.nota1 = nota1;
         this.nota2 = nota2;
         this.nota3 = nota3;
