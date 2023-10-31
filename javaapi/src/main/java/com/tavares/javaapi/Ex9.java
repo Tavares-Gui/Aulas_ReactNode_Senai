@@ -22,6 +22,8 @@ public class Ex9 {
         {
             System.out.println(separar[separar.length / 2]);
         }
+
+        scan.close();
     }
 
 }
