@@ -1,10 +1,5 @@
 package com.tavares.javaapi;
-
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import com.tavares.javaapi.Ex6.Funcionario;
-import com.tavares.javaapi.Ex6.Usuario;
 
 @SpringBootApplication
 public class JavaapiApplication 
@@ -48,7 +43,17 @@ public class JavaapiApplication
 
 
 		//EXERCICIO 6
-		Ex6 listaImpar = new Ex6();
-		listaImpar.ex6();
+		// Ex6 listaImpar = new Ex6();
+		// listaImpar.ex6();
+
+
+		//EXERCICIO 7
+		// Ex7 listaImpar = new Ex7();
+		// listaImpar.ex7();
+		
+
+		//EXERCICIO 8
+		// Ex8 listaImpar = new Ex8();
+		// listaImpar.ex8();
 	}
 }
