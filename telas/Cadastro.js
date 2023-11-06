@@ -1,5 +1,6 @@
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image, Switch } from "react-native";
-import { useState } from 'react';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image, Switch, Button } from "react-native";
+import { useState, useContext } from 'react';
+import { UtilsContext } from "./config/context"
 
 const styles = StyleSheet.create({
     viewClass: 
@@ -102,9 +103,36 @@ const styles = StyleSheet.create({
 
 export function Cadastro(props)
 {
-    const [email, setEmail] = useState("");
-    const [inicio, setInicio] = useState(false)
-    const [senha, setSenha] = useState("");
+
+    const [nome, setNome] = useState("")
+    const [idade, setIdade] = useState("")
+    const [sexo, setSexo] = useState("")
+    const [notificacao, setNotificacao] = useState(false)
+    const {utils, setUtils} = useContext(UtilsContext)
+
+    function gotoUsers()
+    {
+        if(utils.dados)
+        {
+            setUtils({...utils, dados: [...utils.dados, {
+                nome: nome,
+                idade: idade,
+                sexo: sexo,
+                notificacao: notificacao
+            }]})
+        }
+        else
+        {
+            setUtils({...utils, dados: [{
+                nome: nome,
+                idade: idade,
+                sexo: sexo,
+                notificacao: notificacao
+            }]}) 
+        }
+
+        props.navigation.navigate("Usuarios")
+    }
 
     return(
         <View style = {styles.viewClass}>
@@ -118,9 +146,9 @@ export function Cadastro(props)
                 <Text style = {styles.labelText}>Nome:</Text>
                 <TextInput
                     style = {styles.input}
-                    autoComplete = {email}
-                    value = {email}
-                    onChangeText = {e => setEmail(e)}
+                    autoComplete = {nome}
+                    value = {nome}
+                    onChangeText = {e => setNome(e)}
                 />
 
                 <View style={styles.viewTextRow}>
@@ -131,58 +159,41 @@ export function Cadastro(props)
                 <View style={styles.viewInputRow}>
                     <TextInput
                         style = {styles.inputRow}
-                        secureTextEntry = {true}
-                        value = {senha}
-                        onChangeText = {e => setSenha(e)}
+                        value = {sexo}
+                        onChangeText = {e => setSexo(e)}
                     />
                     <TextInput
                         style = {styles.inputRow}
-                        secureTextEntry = {true}
-                        value = {senha}
-                        onChangeText = {e => setSenha(e)}
+                        value = {idade}
+                        onChangeText = {e => setIdade(e)}
                     />
                 </View>
 
                 <Text style = {styles.labelText}>Email:</Text>
-                <TextInput
-                    style = {styles.input}
-                    secureTextEntry = {true}
-                    value = {senha}
-                    onChangeText = {e => setSenha(e)}
-                />
+                <TextInput style = {styles.input}/>
 
                 <Text style = {styles.labelText}>Senha:</Text>
-                <TextInput
-                    style = {styles.input}
-                    secureTextEntry = {true}
-                    value = {senha}
-                    onChangeText = {e => setSenha(e)}
-                />
+                <TextInput style = {styles.input} secureTextEntry = {true}/>
 
                 <Text style = {styles.labelText}>Confirmar senha:</Text>
-                <TextInput
-                    style = {styles.input}
-                    secureTextEntry = {true}
-                    value = {senha}
-                    onChangeText = {e => setSenha(e)}
-                />
+                <TextInput style = {styles.input} secureTextEntry = {true}/>
 
                 <Text style = {styles.labelText}>Deseja receber notificações?</Text>
                 <View style = {styles.viewSwitch}>
                     <Switch
-                        onValueChange = {() => setInicio(!inicio)}
-                        value = {inicio}
+                        onValueChange = {() => setNotificacao(!notificacao)}
+                        value = {notificacao}
                         style = {{marginLeft: "7%"}}
                         trackColor = {{false: "red", true: "green"}}
                         thumbColor = {"white"}
                         activeThumbColor = {"#f4f3f4"}
                     />
-                    <Text style = {styles.labelTextSwitch}>{inicio ? "Sim" : "Não"}</Text>
+                    <Text style = {styles.labelTextSwitch}>{notificacao ? "Sim" : "Não"}</Text>
                 </View>
             </View>
 
             <View style = {styles.viewButton}>
-                <TouchableOpacity style={styles.CadastroButton} onPress = {() => props.navigation.navigate("Usuarios")}>
+                <TouchableOpacity style={styles.CadastroButton} onPress = {() => gotoUsers()}>
                     <Text style = {styles.buttonText}>Cadastrar</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.cadastroButton} onPress = {() => props.navigation.navigate("Login")}>
