@@ -1,4 +1,4 @@
-package com.tavares.javaapi;
+package com.tavares.javaapi.exercicios;
 
 import java.util.Arrays;
 import java.util.Scanner;

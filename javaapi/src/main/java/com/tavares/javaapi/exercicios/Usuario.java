@@ -1,4 +1,4 @@
-package com.tavares.javaapi;
+package com.tavares.javaapi.exercicios;
 
 import lombok.Getter;
 import lombok.Setter;
