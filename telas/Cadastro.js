@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image, Switch, Button } from "react-native";
 import { useState, useContext } from 'react';
 import { UtilsContext } from "./config/context"
+import axios from "axios";
 
 const styles = StyleSheet.create({
     viewClass: 
@@ -110,6 +111,19 @@ export function Cadastro(props)
     const [notificacao, setNotificacao] = useState(false)
     const {utils, setUtils} = useContext(UtilsContext)
 
+    const attUser = async() => {
+        try {
+            const response = await axios("http://localhost:8080/user", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            });
+        }
+        catch (error) {
+            console.error(error);
+        }
+    }
+
     function gotoUsers()
     {
         if(utils.dados)
@@ -136,6 +150,7 @@ export function Cadastro(props)
 
     return(
         <View style = {styles.viewClass}>
+            <Button onPress={() => attUser()}>Testezin</Button>
             <View style = {styles.viewImg}>
                 <Image 
                     style = {styles.Img}
